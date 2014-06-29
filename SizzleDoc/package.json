@@ -1,0 +1,11 @@
+{
+  "name": "SizzleDoc",
+  "version": "0.0.0",
+  "description": "A module for storing documents",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Osama Sakhi <msakhi21@gmail.com>",
+  "license": "GNU GPL 3.0"
+}

@@ -1,0 +1,15 @@
+extends layout
+
+block content
+	h3=title
+	br
+	p=content
+	br
+	small
+		i
+			p Created: #{created}
+			p Last Modified: #{lastModified}
+		strong= 'Tags for this document'
+		ul
+			each tag, index in tags
+				li=tag

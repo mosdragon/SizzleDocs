@@ -1,0 +1,22 @@
+extends layout
+
+block content
+	h3=title
+
+	form(id="form1")
+		input(type="text" id="title" value="#{title}")
+		br
+		textarea(id="content", row="40", cols="40")=content
+		br
+		input(type="button" onClick="handle()" id="submit" value="submit")
+	br
+	p=content
+	br
+	small
+		i
+			p Created: #{created}
+			p Last Modified: #{lastModified}
+		strong= 'Tags for this document'
+		ul
+			each tag, index in tags
+				li=tag
