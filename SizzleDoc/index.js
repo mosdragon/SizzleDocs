@@ -6,7 +6,7 @@ var Doc = function () {
     tags: null,
     created: null,
     lastModified: null,
-    docNumber: null
+    idNumber: null
   };
 
   this.getData = function(){

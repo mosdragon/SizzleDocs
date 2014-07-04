@@ -1,44 +1,45 @@
 var mongoose = require('mongoose');
-var ObjectID = mongoose.ObjectID;
+var Schema = mongoose.Schema;
+var ObjectId = Schema.Types.ObjectId;
 
-var sizzleSchema = new mongoose.Schema({
+var Sizzle = new Schema({
   title: {type: String, index:true},
   content: String,
   created: Date,
   lastModified: Date,
   tags: {type: Array, unique: true},
-  docNumber: {type: Number, unique: true, index: true},
-  _user: {type:String, index: true}
+  idNumber: {type: Number, index: true},
+  _user: {type: ObjectId, index: true, ref: 'User'}
 });
 
-sizzleSchema.methods.getTitle = function() {
+Sizzle.methods.getTitle = function() {
   return this.title;
 }
 
-sizzleSchema.methods.getContent = function() {
+Sizzle.methods.getContent = function() {
 	return this.content;
 }
 
-sizzleSchema.methods.getUser = function() {
+Sizzle.methods.getUser = function() {
 	return this._user;
 }
 
-sizzleSchema.methods.getUserName = function() {
-	return this._user.name;
+Sizzle.methods.getUserName = function() {
+	return this._user.username;
 }
 
-sizzleSchema.methods.getDateCreated = function(){
+Sizzle.methods.getDateCreated = function(){
   return this.created;
 }
 
-sizzleSchema.methods.getDateModified = function(){
+Sizzle.methods.getDateModified = function(){
   return this.lastModified;
 }
 
-sizzleSchema.methods.getData = function(){
+Sizzle.methods.getData = function(){
   return this.data;
 }
 
-var sizzleModel = mongoose.model('Document', sizzleSchema);
+var sizzleModel = mongoose.model('Document', Sizzle);
 
 module.exports = sizzleModel;

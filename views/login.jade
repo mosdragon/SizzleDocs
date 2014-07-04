@@ -1,0 +1,48 @@
+doctype html
+html
+  head
+    title #{title} | SizzleDocs - Never Get Burned By Storage Again
+    link(rel='stylesheet', href='../../css/gumby.css')
+  body
+    div.metro
+      div.row
+        div(class="centered twelve columns")
+          h3=title
+
+          form(id="login", name="login", method='post')
+            fieldset
+              ul
+                li(class="field")
+                  label(class="inline", for="username")="Username"
+                  input(type="text", class="narrow input", id="username", placeholder="Spiderman")
+                li(class="field")
+                  label(class="inline", for="password")="Password"
+                  input(type="password", class="narrow password input", id="password", placeholder="secretPassword")
+                div(class="medium primary btn")
+                  a(href="#", onclick="handle()", id="submit")="Submit"
+
+    script(src="js/libs/modernizr-2.6.2.min.js")
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js")
+    script(src="js/libs/jquery-1.10.1.min.js")
+    script(gumby-touch="../../js/libs" src="../../js/libs/gumby.min.js")
+    script.
+      var handle = function() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        var data = {
+          'username': username,
+          'password': password
+        }
+        $.ajax({
+          url: 'http://localhost:3000/login',
+          data: data,
+          dataType: 'json',
+          type: 'POST',
+          success: function(response) {
+          alert("Submitted");
+          console.log(JSON.stringify(response, null, 2));
+          window.location.href=response.url + '/' + username;
+          }
+        })
+      }

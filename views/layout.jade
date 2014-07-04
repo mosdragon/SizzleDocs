@@ -1,14 +1,14 @@
 doctype html
 html
 	head
-		title #{title} | A post by #{_user}
+		#{title} - #{_user} | SizzleDocs - Never Get Burned By Storage Again
 		link(rel='stylesheet', href='../../css/gumby.css')
 		script.
-			function handle(){ 
-			var title = document.getElementById("title").value; 
-			var content = document.getElementById("content").value; 
-			location.href = "http://localhost:3000/#{docNumber}" + "?title=" + title + "&content=" + content;}
+			function handle(){
+			var title = document.getElementById("title").value;
+			var content = document.getElementById("content").value;
+			location.href = "http://localhost:3000/#{idNumber}" + "?title=" + title + "&content=" + content;}
 	body
 		div.metro
-			div.container 
+			div.container
 				block content

@@ -4,12 +4,15 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 
 var app = express();
 var db = require('./db');
+
+var docRoutes = require('./routes/docs');
+var userRoutes = require('./routes/users');
+
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -51,12 +54,21 @@ if (app.get('env') === 'development') {
   });
 }
 
-// app.get('/', routes.index);
-app.get('/docs/:number', routes.sizzle);
-app.get('/docs/:number/show', routes.show);
-app.get('/docs/:number/edit', routes.edit);
+// app.get('/', docRoutes.index);
+app.get('/docs/:number', docRoutes.sizzle);
+app.get('/docs/:number/show', docRoutes.show);
+app.get('/docs/:number/edit', docRoutes.edit);
+app.get('/registration', userRoutes.register);
 
-app.put('/docs/:number/modified', routes.modified);
+app.post('/create', userRoutes.create);
+app.get('/welcome', userRoutes.welcome);
+app.get('/account/:user', userRoutes.account);
+
+app.post('/login', userRoutes.login);
+
+app.get('/login', userRoutes.entry);
+
+app.put('/docs/:number/modified', docRoutes.modified);
 
 
 http.createServer(app).listen(app.get('port'), function(){
