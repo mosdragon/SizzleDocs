@@ -4,7 +4,8 @@
 I'm mostly following the tutorial on http://dailyjs.com/tags.html#lmawa
 
 I've changed thing up a bit with the mongoose schema
-just out of preference. At the moment, routing is giving me issues.
+just out of preference. I'm also adding in user
+authentication to add more of my own features in.
 
 To run the app
 
