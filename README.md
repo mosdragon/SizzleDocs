@@ -12,7 +12,7 @@ To run the app
 ```
   cd nodepad
   npm install
-  npm start
+  node app.js
 ```
 
 Thanks and Enjoy!
