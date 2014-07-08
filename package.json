@@ -10,5 +10,10 @@
     "jade": "*",
     "mongoose": "^3.8.12",
     "url": "^0.10.1"
+  },
+  "devDependencies": {
+    "mocha": "^1.20.1",
+    "should": "~1.2.2",
+    "supertest": "~0.7.1"
   }
 }
