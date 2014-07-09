@@ -28,8 +28,9 @@ exports.create = function(req, res) {
     'email': email,
     'username': username,
     'password': password,
-    'created': (new Date()),
   })
+
+  record._id = record.generateID(username);
 
   record.save(function(err){
     if(err){

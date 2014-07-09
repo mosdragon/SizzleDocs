@@ -3,13 +3,18 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;
 
 var User = new Schema({
-  username: {type: String, index: true, unique: true, required: true},
-  email: {type: String, index: true, unique: true, required: true},
+  _docs: {type: [Number], default: []},
+  _id: {type: String, index:true, unique: true},
+  created: {type: Date, index: true, default: new Date()},
+  email: {type: String, unique: true, required: true},
   password: {type: String, required: true},
-  numberOfDocuments: {type: Number, default: 0},
-  docs: {type: [ObjectId], default: []},
-  created: {type: Date, index: true},
+  username: {type: String, unique: true, required: true},
 });
+
+User.methods.generateID = function(username) {
+  var rand = Math.floo(Math.random * 10000);
+  return (username + rand);
+}
 
 User.methods.getUsername = function() {
   return this.username;
