@@ -3,12 +3,13 @@
  * GET home page.
  */
 
-var data = require('../data');
-var sizzle = require('../SizzleDoc');
-var sizzleSchema = require('../schemas/sizzle');
+var SizzleRoutes = function(data) {
+	var sizzle = require('../SizzleDoc');
+	var sizzleSchema = require('../schemas/sizzle');
 
-for(var index in data){
-	data[index] = sizzle(data[index]);
+	for(var index in data){
+		this.data[index] = sizzle(data[index]);
+	}
 }
 
 exports.sizzle = function(req, res){
@@ -60,4 +61,8 @@ exports.edit = function(req, res){
 		var showFile = data[number].data;
 		res.render('form', showFile);
 	}
+}
+
+module.export = function(data) {
+	return new SizzleRoutes(data);
 }
