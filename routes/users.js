@@ -8,6 +8,11 @@ var sizzle = require('../SizzleDoc');
 var User = require('../schemas/user');
 var crypto = require('crypto');
 
+var generateID = function(name) {
+  var rand = Math.floor(Math.random() * 10000);
+  return (name + rand);
+}
+
 exports.register = function(req, res) {
   res.render('registration', {
     title: 'Signup for SizzleDoc'
@@ -17,6 +22,8 @@ exports.register = function(req, res) {
 exports.create = function(req, res) {
   var email = req.param('email');
   var username = req.param('username');
+  var id = generateID(username);
+  console.log(id);
 
   var inputPassword = req.param('password');
   var sha256 = crypto.createHash('sha256');
@@ -25,12 +32,13 @@ exports.create = function(req, res) {
   console.log(password);
 
   var record = new User({
+    '_id': id,
     'email': email,
     'username': username,
     'password': password,
   })
 
-  record._id = record.generateID(username);
+  console.log(record);
 
   record.save(function(err){
     if(err){
@@ -41,6 +49,7 @@ exports.create = function(req, res) {
         'message': 'Try Again Later'
       });
     } else {
+      console.log('success');
       res.send({
         'email': email,
         'username': username,

@@ -3,14 +3,12 @@
  * Module dependencies.
  */
 
-module.exports = function(data){
+module.exports = function(data, routes){
   var express = require('express');
   var path = require('path');
   var app = express();
 
   var db = require('./db');
-  var docRoutes = require('./routes/docs');
-  var userRoutes = require('./routes/users');
 
   // all environments
   app.set('port', process.env.PORT || 3000);
@@ -54,17 +52,7 @@ module.exports = function(data){
     });
   }
 
-  // app.get('/', docRoutes.index);
-  app.get('/account/:user', userRoutes.account);
-  app.get('/docs/:number', docRoutes.sizzle);
-  app.get('/docs/:number/edit', docRoutes.edit);
-  app.get('/docs/:number/show', docRoutes.show);
-  app.get('/login', userRoutes.entry);
-  app.get('/registration', userRoutes.register);
-  app.get('/welcome', userRoutes.welcome);
-  app.post('/create', userRoutes.create);
-  app.post('/login', userRoutes.login);
-  app.put('/docs/:number/modified', docRoutes.modified);
+  
 
   return app;
 };

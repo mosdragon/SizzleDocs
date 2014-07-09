@@ -12,7 +12,7 @@ var SizzleRoutes = function(data) {
 	}
 }
 
-exports.sizzle = function(req, res){
+SizzleRoutes.prototype.sizzle = function(req, res){
 	var number = req.param('number');
 
 	if(typeof data[number] === 'undefined'){
@@ -21,7 +21,7 @@ exports.sizzle = function(req, res){
 		res.json(data[number].getInformation());
 	}
 };
-exports.modified = function(req, res){
+SizzleRoutes.prototype.modified = function(req, res){
 	var number = req.param('number');
 
 	if(typeof data[number] === 'undefined'){
@@ -43,7 +43,7 @@ exports.modified = function(req, res){
 	}
 };
 
-exports.show = function(req, res){
+SizzleRoutes.prototype.show = function(req, res){
 	var number = req.param('number');
 	if(typeof data[number] === 'undefined'){
 		res.status(404).json({status: 'error'});
@@ -53,7 +53,7 @@ exports.show = function(req, res){
 	}
 };
 
-exports.edit = function(req, res){
+SizzleRoutes.prototype.edit = function(req, res){
 	var number = req.param('number');
 	if(typeof data[number] === 'undefined'){
 		res.status(404).json({status: 'error'});

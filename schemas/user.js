@@ -11,11 +11,6 @@ var User = new Schema({
   username: {type: String, unique: true, required: true},
 });
 
-User.methods.generateID = function(username) {
-  var rand = Math.floo(Math.random * 10000);
-  return (username + rand);
-}
-
 User.methods.getUsername = function() {
   return this.username;
 }

@@ -16,6 +16,16 @@ var http = require("http");
 var data = require('./data');
 var app = require("./app")(data);
 
+var userRoutes = require('./routes/users');
+var docRoutes = require('./routes/docs');
+var routes = {
+  'users': userRoutes,
+  'docs': docRoutes,
+};
+
+var setupRoutes = require('./routes')(app, routes);
+setupRoutes(app, routes);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 })
