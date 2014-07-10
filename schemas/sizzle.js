@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var autoIncrement = require('mongoose-auto-increment');
 
-var Sizzle = new Schema({
+var Doc = new Schema({
   _user: {type: String, index: true, ref: 'User'}
   content: String,
   created: {type:Date, index:true, default: new Date()},
@@ -11,32 +11,32 @@ var Sizzle = new Schema({
   title: {type: String, index:true},
 });
 
-Sizzle.plugin(autoIncrement.plugin, 'Document');
+Doc.plugin(autoIncrement.plugin, 'Document');
 
-Sizzle.methods.getTitle = function() {
+Doc.methods.getTitle = function() {
   return this.title;
 }
 
-Sizzle.methods.getContent = function() {
+Doc.methods.getContent = function() {
 	return this.content;
 }
 
-Sizzle.methods.getUser = function() {
+Doc.methods.getUser = function() {
 	return this._user;
 }
 
-Sizzle.methods.getUserName = function() {
+Doc.methods.getUserName = function() {
 	return this._user.username;
 }
 
-Sizzle.methods.getDateCreated = function(){
+Doc.methods.getDateCreated = function(){
   return this.created;
 }
 
-Sizzle.methods.getDateModified = function(){
+Doc.methods.getDateModified = function(){
   return this.lastModified;
 }
 
-var sizzleModel = mongoose.model('Document', Sizzle);
+var docModel = mongoose.model('Doc', Doc);
 
-module.exports = sizzleModel;
+module.exports = docModel;

@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;
 
 var User = new Schema({
-  _docs: {type: [Number], default: []},
+  _docs: {type: [{type: Number, ref: 'Doc'}], default: []},
   _id: {type: String, index:true, unique: true},
   created: {type: Date, index: true, default: new Date()},
   email: {type: String, unique: true, required: true},

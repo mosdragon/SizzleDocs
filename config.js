@@ -5,5 +5,6 @@ module.exports = {
   'logger': {
     'api': 'logs/api.log',
     'exception': 'logs/exceptions.log',
-  }
+  },
+  'port': 8088,
 }

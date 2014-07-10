@@ -3,7 +3,7 @@
  * GET home page.
  */
 
-var SizzleRoutes = function(data) {
+var DocRoutes = function(data) {
 	var sizzle = require('../SizzleDoc');
 	var sizzleSchema = require('../schemas/sizzle');
 
@@ -12,7 +12,7 @@ var SizzleRoutes = function(data) {
 	}
 }
 
-SizzleRoutes.prototype.sizzle = function(req, res){
+DocRoutes.prototype.sizzle = function(req, res){
 	var number = req.param('number');
 
 	if(typeof data[number] === 'undefined'){
@@ -21,7 +21,7 @@ SizzleRoutes.prototype.sizzle = function(req, res){
 		res.json(data[number].getInformation());
 	}
 };
-SizzleRoutes.prototype.modified = function(req, res){
+DocRoutes.prototype.modified = function(req, res){
 	var number = req.param('number');
 
 	if(typeof data[number] === 'undefined'){
@@ -43,7 +43,7 @@ SizzleRoutes.prototype.modified = function(req, res){
 	}
 };
 
-SizzleRoutes.prototype.show = function(req, res){
+DocRoutes.prototype.show = function(req, res){
 	var number = req.param('number');
 	if(typeof data[number] === 'undefined'){
 		res.status(404).json({status: 'error'});
@@ -53,7 +53,7 @@ SizzleRoutes.prototype.show = function(req, res){
 	}
 };
 
-SizzleRoutes.prototype.edit = function(req, res){
+DocRoutes.prototype.edit = function(req, res){
 	var number = req.param('number');
 	if(typeof data[number] === 'undefined'){
 		res.status(404).json({status: 'error'});
@@ -64,5 +64,5 @@ SizzleRoutes.prototype.edit = function(req, res){
 }
 
 module.export = function(data) {
-	return new SizzleRoutes(data);
+	return new DocRoutes(data);
 }

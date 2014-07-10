@@ -3,15 +3,15 @@
  * Module dependencies.
  */
 
-module.exports = function(data, routes){
+module.exports = function(data, routers){
   var express = require('express');
   var path = require('path');
   var app = express();
-
   var db = require('./db');
+  var config = require('./config');
 
   // all environments
-  app.set('port', process.env.PORT || 3000);
+  app.set('port', config.port || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.favicon());
@@ -52,7 +52,22 @@ module.exports = function(data, routes){
     });
   }
 
-  
+  var userRoutes = routers.users;
+  var docRoutes = routers.docs;
+
+  console.log(userRoutes);
+  console.log(docRoutes);
+
+  app.get('/account/:user', userRoutes.account);
+  app.get('/docs/:number', docRoutes.sizzle);
+  app.get('/docs/:number/edit', docRoutes.edit);
+  app.get('/docs/:number/show', docRoutes.show);
+  app.get('/login', userRoutes.entry);
+  app.get('/registration', userRoutes.register);
+  app.get('/welcome', userRoutes.welcome);
+  app.post('/create', userRoutes.create);
+  app.post('/login', userRoutes.login);
+  app.put('/docs/:number/modified', docRoutes.modified);
 
   return app;
 };
