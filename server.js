@@ -15,10 +15,7 @@
 var http = require("http");
 var data = require('./data');
 var userRoutes = require('./routes/users');
-var docRoutes = require('./routes/docs')([]);
-console.log("docroutes");
-console.log(docRoutes);
-
+var docRoutes = require('./routes/docs')();
 var routers = {
   'users': userRoutes,
   'docs': docRoutes,

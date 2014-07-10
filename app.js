@@ -55,9 +55,6 @@ module.exports = function(data, routers){
   var userRoutes = routers.users;
   var docRoutes = routers.docs;
 
-  console.log(userRoutes);
-  console.log(docRoutes);
-
   app.get('/account/:user', userRoutes.account);
   app.get('/docs/:number', docRoutes.sizzle);
   app.get('/docs/:number/edit', docRoutes.edit);

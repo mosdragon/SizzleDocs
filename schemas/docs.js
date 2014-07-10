@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var autoIncrement = require('mongoose-auto-increment');
+var db = require('../db')
 
 var Doc = new Schema({
-  _user: {type: String, index: true, ref: 'User'}
+  _user: {type: String, index: true, ref: 'User'},
   content: String,
   created: {type:Date, index:true, default: new Date()},
   lastModified: {type: Date, index: true},
@@ -11,6 +12,7 @@ var Doc = new Schema({
   title: {type: String, index:true},
 });
 
+autoIncrement.initialize(db);
 Doc.plugin(autoIncrement.plugin, 'Document');
 
 Doc.methods.getTitle = function() {
