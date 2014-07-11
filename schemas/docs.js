@@ -7,6 +7,7 @@ var Doc = new Schema({
   _user: {type: String, index: true, ref: 'User'},
   content: String,
   created: {type:Date, index:true, default: new Date()},
+  deleted: {type: Boolean, default: false},
   lastModified: {type: Date, index: true},
   tags: {type: Array, unique: true},
   title: {type: String, index:true},

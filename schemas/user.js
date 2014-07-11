@@ -6,6 +6,7 @@ var User = new Schema({
   _docs: {type: [{type: Number, ref: 'Doc'}], default: []},
   _id: {type: String, index:true, unique: true},
   created: {type: Date, index: true, default: new Date()},
+  deleted: {type: Boolean, default: false},
   email: {type: String, unique: true, required: true},
   password: {type: String, required: true},
   username: {type: String, unique: true, required: true},
