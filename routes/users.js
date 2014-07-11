@@ -50,6 +50,8 @@ exports.create = function(req, res) {
       });
     } else {
       console.log('success');
+      req.session.user = record;
+      req.session.docs = record._docs;
       res.send({
         'email': email,
         'username': username,
@@ -81,6 +83,8 @@ exports.login = function(req, res) {
       })
     } else {
       console.log("found account");
+      req.session.user = user;
+      req.session.docs = user._docs;
       res.send({
         'url': '../account',
         'user': username
@@ -91,7 +95,7 @@ exports.login = function(req, res) {
 
 exports.welcome = function(req, res) {
   res.send({
-    message: "Welcome to SizzleDocs",
+    message: "Welcome to SizzleDocs, "+req.session.username,
     slogan: "Stop Getting Burned Now"
   })
 }

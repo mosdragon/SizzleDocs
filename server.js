@@ -21,7 +21,8 @@ var routers = {
   'docs': docRoutes,
 };
 
-var app = require("./app")(data, routers);
+var db = require('./db');
+var app = require("./app")(data, routers, db);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

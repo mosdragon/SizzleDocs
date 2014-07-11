@@ -3,12 +3,12 @@
  * Module dependencies.
  */
 
-module.exports = function(data, routers){
+module.exports = function(data, routers, db){
   var express = require('express');
   var path = require('path');
   var app = express();
-  var db = require('./db');
   var config = require('./config');
+  var MongoStore = require('connect-mongo')(express);
 
   // all environments
   app.set('port', config.port || 3000);
@@ -16,10 +16,15 @@ module.exports = function(data, routers){
   app.set('view engine', 'jade');
   app.use(express.favicon());
   app.use(express.logger('dev'));
+  app.use(express.cookieParser());
+  app.use(express.session({
+    secret: 'ComeToBrasil',
+    store: new MongoStore({
+      mongoose_connection: db
+    })
+  }));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.cookieParser());
-  app.use(express.session({secret: 'ComeToBrasil'}));
 
   app.use(function(req,res,next){
     req.db = db;
