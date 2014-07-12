@@ -3,9 +3,7 @@
  * GET home page.
  */
 
-
-var sizzle = require('../SizzleDoc');
-var User = require('../schemas/user');
+var User = require('../app/models/user');
 var crypto = require('crypto');
 
 var generateID = function(name) {
