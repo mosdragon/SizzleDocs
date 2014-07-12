@@ -9,6 +9,7 @@ module.exports = function(data, routers, db){
   var app = express();
   var config = require('./config');
   var MongoStore = require('connect-mongo')(express);
+  var passport = require('./auth');
 
   // all environments
   app.set('port', config.port || 3000);
@@ -23,6 +24,8 @@ module.exports = function(data, routers, db){
       mongoose_connection: db
     })
   }));
+  app.use(passport.initialize());
+  app.use(passport.session());
   app.use(express.bodyParser());
   app.use(express.methodOverride());
 
@@ -68,7 +71,11 @@ module.exports = function(data, routers, db){
   app.get('/registration', userRoutes.register);
   app.get('/welcome', userRoutes.welcome);
   app.post('/create', userRoutes.create);
-  app.post('/login', userRoutes.login);
+  // app.post('/login', userRoutes.login);
+  app.post('/login', passport.authenticate('local',{
+    failureRedirect: '/login',
+    successRedirect: '/account/:user'
+  }));
   app.put('/docs/:number/modified', docRoutes.modified);
 
   return app;

@@ -83,7 +83,7 @@ exports.login = function(req, res) {
       })
     } else {
       console.log("found account");
-      req.session.user = user;
+      req.session.user = user.username;
       req.session.docs = user._docs;
       res.send({
         'url': '../account',
