@@ -3,7 +3,7 @@
  * GET home page.
  */
 
-var User = require('../app/models/user');
+var User = require('../models/user');
 var crypto = require('crypto');
 
 var generateID = function(name) {

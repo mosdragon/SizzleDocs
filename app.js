@@ -9,7 +9,7 @@ module.exports = function(data, routers, db){
   var app = express();
   var config = require('./config');
   var MongoStore = require('connect-mongo')(express);
-  var passport = require('./auth');
+  var passport = require('./config/auth');
 
   // all environments
   app.set('port', config.port || 3000);

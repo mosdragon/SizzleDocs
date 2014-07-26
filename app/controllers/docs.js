@@ -4,8 +4,8 @@
  */
 
 var DocRoutes = function(data) {
-	var sizzle = require('../SizzleDoc');
-	var sizzleSchema = require('../app/models/docs');
+	var sizzle = require('../../SizzleDoc');
+	var sizzleSchema = require('../models/docs');
 
 	for(var index in data){
 		this.data[index] = sizzle(data[index]);

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var autoIncrement = require('mongoose-auto-increment');
-var db = require('../db')
+var db = require('../../db')
 
 var Doc = new Schema({
   _user: {type: String, index: true, ref: 'User'},
